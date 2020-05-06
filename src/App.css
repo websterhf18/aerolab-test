@@ -1,7 +1,75 @@
-.App {
+.bg-light {
+  background-color: #fff !important;
+}
+.pill-coins{
+  background-color: #EDEDED;
+  color: #616161;
+  margin: 20px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.pill-coins-prod{
+  background-color: #61616173;
+  color: #fff;
+  padding: 10px 5px 10px 10px;
+  border-radius: 100px;
+  display: inline-block;
+  height: 45px;
+
+}
+.img-coin{
+  margin: 5px;
+}
+.product-overlay{
+  transition: .5s ease;
+  opacity: .85;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #0AD4FA;
+  z-index: 0;
+  display: none;
+}
+.product-text-overlay{
+  font-size: 30px;
+  color: #fff;
+}
+.product-button{
+  border-radius: 100px;
+  background-color: #fff;
+  color: #616161;
+}
+.product-overlay-content{
+  position: relative;
+  top: 45%;
+}
+.pill-cart{
+  z-index: 999;
+}
+.onaction-mouse{
+  cursor: pointer
 }
 
+.App {
+  text-align: center;
+  background-color: #F9F9F9;
+}
+.product-block{
+  margin: 15px 2px;
+}
+.card-header{
+  height: 70px;
+  padding: 9px;
+  background-color: #fff0;
+  border-bottom: 0px;
+  text-align: right;
+  z-index: 1;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
