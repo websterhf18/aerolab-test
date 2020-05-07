@@ -22,7 +22,7 @@
 }
 .product-overlay{
   transition: .5s ease;
-  opacity: .85;
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -33,7 +33,9 @@
   height: 100%;
   background-color: #0AD4FA;
   z-index: 0;
-  display: none;
+}
+.product-overlay.active{
+  opacity: .85;
 }
 .product-text-overlay{
   font-size: 30px;

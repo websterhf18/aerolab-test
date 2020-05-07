@@ -1,12 +1,18 @@
 import React from 'react'
+import classNames from 'classnames'
 import { Card, Col, Button } from 'react-bootstrap';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import money from '../assets/money.svg';
 import carticon from '../assets/Icon.svg';
+import carticonActive from '../assets/IconActive.svg';
+
+import appActions from "../store/appActions";
 
 export default function ProductItem(){
+    const dispatch = useDispatch();
     const products = useSelector(state => state.aerolab.products);
     const points = useSelector(state => state.aerolab.userPoints);
+    const idOverlay = useSelector(state => state.aerolab.idOverlay);
     const conditionalBTN = (product) => {
         if(product.cost > points){
             var pointsRequired = product.cost - points;
@@ -27,10 +33,12 @@ export default function ProductItem(){
         }else{
             return (
                 <Card.Header>
-                    <span className="pill-cart">
+                    <span 
+                    onClick={() => dispatch(appActions.setOverlay(product._id))}
+                    className="pill-cart">
                         <img
                         alt=""
-                        src={carticon}
+                        src={idOverlay === product._id ? carticonActive : carticon}
                         width="42"
                         height="42"
                         className="img-coin onaction-mouse"
@@ -39,12 +47,18 @@ export default function ProductItem(){
                 </Card.Header> 
             );
         }
-        
     };
+    const redeemProduct = (product) => {
+        dispatch(appActions.setRedeemPoints(product.cost))
+    }
     const conditionalOverlay = (product) => {
+        var liClasses = classNames({
+            'product-overlay': true,
+            'active': idOverlay === product._id
+        });
         if(product.cost < points){
             return (
-                <div className="product-overlay">
+                <div className={liClasses}>
                     <div className="product-overlay-content">
                         <div className="product-text-overlay">
                             {product.cost}
@@ -56,7 +70,9 @@ export default function ProductItem(){
                             className="img-coin"
                             />
                         </div>
-                        <Button className="product-button">Redeem now</Button>
+                        <Button
+                        onClick={() => redeemProduct(product)}
+                        className="product-button">Redeem now</Button>
                     </div>
                 </div>
             );
@@ -69,8 +85,8 @@ export default function ProductItem(){
             </div>
         );
     }else{
-        const productItems = products.map((product) =>
-            <Col key={product._id}>
+        const productItems = products.map((product, index) =>
+            <Col key={index}>
                 <Card
                 className="product-block" 
                 style={{ width: '250px' }}>
