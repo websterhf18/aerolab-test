@@ -7,10 +7,11 @@ import appActions from "../store/appActions";
 export default function Filters() {
     const dispatch = useDispatch();
     const filterActive = useSelector(state => state.aerolab.filterActive);
+    const products = useSelector(state => state.aerolab.products);
     return (
         <Row className="filters-container">
             <Col className="border-right-0 filters-counter">
-                <span>16 of 32 products</span>
+                <span>{products.length} of {products.length} products</span>
             </Col>
             <Col xs={9}>
                 <span
