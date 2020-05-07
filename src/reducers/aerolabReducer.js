@@ -3,7 +3,8 @@ const initialProps = {
     userName: null,
     userPoints: null,
     idOverlay: 0,
-    userId: null
+    userId: null,
+    filterActive: 'default'
 };
   
 export default function(state = initialProps, action) {
@@ -29,6 +30,11 @@ export default function(state = initialProps, action) {
         return {
             ...state,
             userPoints: state.userPoints - action.payload
+        };
+        case "STATE_SET_FILTER":
+        return {
+            ...state,
+            filterActive: action.payload
         };
         default:
         return state;

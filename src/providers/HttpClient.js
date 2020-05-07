@@ -17,7 +17,7 @@ export default {
         let headers = {headers: {}};
         headers.headers = {Authorization: `Bearer ${TOKEN_API}`};
 
-        return axios.post(this.getUrl(name, urlParams), {params: data, ...headers, ...config});
+        return axios.post(this.getUrl(name, urlParams), data, {...headers, ...config});
     },
     //Parsing URL
     getUrl: function (endpoint, params = null) {

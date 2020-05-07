@@ -22,5 +22,11 @@ export default {
         type: "STATE_SET_REDEEM_POINTS",
         payload: state
       };
+    },
+    setFilter: function(state){
+      return {
+        type: "STATE_SET_FILTER",
+        payload: state
+      };
     }
 }

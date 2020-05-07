@@ -7,12 +7,15 @@ import carticon from '../assets/Icon.svg';
 import carticonActive from '../assets/IconActive.svg';
 
 import appActions from "../store/appActions";
+import ApiProvider from '../providers/ApiProvider';
+import _ from "lodash";
 
 export default function ProductItem(){
     const dispatch = useDispatch();
     const products = useSelector(state => state.aerolab.products);
     const points = useSelector(state => state.aerolab.userPoints);
     const idOverlay = useSelector(state => state.aerolab.idOverlay);
+    const filterActive = useSelector(state => state.aerolab.filterActive);
     const conditionalBTN = (product) => {
         if(product.cost > points){
             var pointsRequired = product.cost - points;
@@ -50,6 +53,10 @@ export default function ProductItem(){
     };
     const redeemProduct = (product) => {
         dispatch(appActions.setRedeemPoints(product.cost))
+        var request = {
+            productId: product._id
+        }
+        ApiProvider.redeemProduct(request);
     }
     const conditionalOverlay = (product) => {
         var liClasses = classNames({
@@ -85,7 +92,19 @@ export default function ProductItem(){
             </div>
         );
     }else{
-        const productItems = products.map((product, index) =>
+        var productsFilter = products;
+        switch (filterActive) {
+            case 'default':
+                productsFilter = products;
+                break;
+            case 'lowest':
+                productsFilter = _.orderBy(products, ['cost'], ['asc']);
+                break;
+            case 'highest':
+                productsFilter = _.orderBy(products, ['cost'], ['desc']);
+                break;
+        }
+        const productItems = productsFilter.map((product, index) =>
             <Col key={index}>
                 <Card
                 className="product-block" 

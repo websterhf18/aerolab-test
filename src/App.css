@@ -15,7 +15,6 @@
   border-radius: 100px;
   display: inline-block;
   height: 45px;
-
 }
 .img-coin{
   margin: 5px;
@@ -56,10 +55,30 @@
 .onaction-mouse{
   cursor: pointer
 }
-
-.App {
-  text-align: center;
-  background-color: #F9F9F9;
+.filters-container{
+  margin: 25px;
+}
+.filters-items{
+  color: #A3A3A3;
+  font-size: 20px;
+  margin-right: 25px;
+}
+.filters-counter{
+  color: #A3A3A3;
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-right: 1px solid #dee2e6!important;
+}
+.filters-btn{
+  border-radius: 100px;
+  background-color: #EDEDED;
+  color: #A3A3A3 !important;
+  border: 0px;
+}
+.filters-btn.active{
+  background-color: #0AD4FA;
+  color: #fff !important;
 }
 .product-block{
   margin: 15px 2px;
@@ -71,6 +90,11 @@
   border-bottom: 0px;
   text-align: right;
   z-index: 1;
+}
+/****/
+.App {
+  text-align: center;
+  background-color: #F9F9F9;
 }
 .App-logo {
   height: 40vmin;
