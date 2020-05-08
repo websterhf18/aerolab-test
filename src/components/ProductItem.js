@@ -63,7 +63,7 @@ export default function ProductItem(){
             'product-overlay': true,
             'active': idOverlay === product._id
         });
-        if(product.cost < points){
+        if(product.cost <= points){
             return (
                 <div className={liClasses}>
                     <div className="product-overlay-content">
